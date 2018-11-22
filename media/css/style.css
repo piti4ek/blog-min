@@ -78,6 +78,9 @@ body {
     padding: 37px 0; }
     #header .header__top .header__top__logo {
       float: left; }
+#header .header__top .header__top__logo .header__logo {
+    color: #000000;
+    text-decoration: none;}
     #header .header__top .header__top__menu {
       padding-top: 15px;
       text-align: right; }
