@@ -109,52 +109,51 @@ require "includes/config.php"
                             <div id="comment-add-form" class="block">
                                 <h3>Комментарии</h3>
                                 <div class="block__content">
-                                    <form action="" class="form" method="POST" action="/article.php?id=<?php echo $art['id'];?>#comment-add-form">
+                                    <form class="form" method="POST" action="/article.php?id=<?php echo $art['id'];?>#comment-add-form">
                                         <?php
-                                           if(isset ($_POST['do_post']))
+                                           if( isset ($_POST['do_post']) )
                                            {
                                                $errors = array();
-                                               if($_POST['name'] == '' )
-                                               {
-                                                   $errors[] = 'Введите имя!';
+
+                                               if ( $_POST['name'] == ''){
+                                                   $errors[] = 'Введите имя';
                                                }
 
-                                               if($_POST['nickname'] == '' )
-                                               {
-                                                   $errors[] = 'Введите никнейм!';
+                                               if ( $_POST['nickname'] == ''){
+                                                   $errors[] = 'Введите никнейм';
                                                }
 
-                                               if($_POST['email'] == '' )
-                                               {
-                                                   $errors[] = 'Введите email!';
+                                               if ( $_POST['email'] == ''){
+                                                   $errors[] = 'Введите Email';
                                                }
 
-                                               if($_POST['text'] == '' )
-                                               {
-                                                   $errors[] = 'Введите текст комментария!';
+                                               if ( $_POST['text'] == ''){
+                                                   $errors[] = 'Введите текст';
                                                }
 
-                                               if(empty($errors))
-                                               {
-                                                   echo ("INSERT INTO `comments` (`author`, `nickname`, `email`, `text`, `pubdate`, `articles_id`) VALUES('". $_POST['author'] ."', '". $_POST['nickname'] ."', '". $_POST['email'] ."', '". $_POST['text'] ."', '". $_POST[''] ."', NOW(), '". $art['id'] ."') ");
-                                                   echo '<span style="color: green; font-weight: bold; margin-bottom: 10px; display: block;">Комментарий успешно добавлен!</span>';
-                                                   exit();
-                                                   mysqli_query($connection, "INSERT INTO `comments` (`author`, `nickname`, `email`, `text`, `pubdate`, `articles_id`) VALUES('". $_POST['author'] ."', '". $_POST['nickname'] ."', '". $_POST['email'] ."', '". $_POST['text'] ."', '". $_POST[''] ."', NOW(), '". $art['id'] ."') ");
-                                               } else {
-                                                   echo '<span style="color: red; font-weight: bold; margin-bottom: 10px; display: block;">' . $errors['0'] . '</span>';
+                                               if (empty($errors)) {
+                                                   mysqli_query($connection, "INSERT INTO `comments` (`author`, `nickname`, `email`, `text`, `pubdate`, `articles_id`) VALUES (
+                                                        '".$_POST['name']."', '".$_POST['nickname']."', '".$_POST['email']."', '".$_POST['text']."', NOW(), '".$art['id']."'
+                                                   )");
+                                                   echo '<span style="color: green; font-weight: bold; margin-bottom: 10px; display: block;">Комментарий добавлен!</span>';
+                                               }
+
+                                               else {
+                                                   echo '<span style="color: red; font-weight: bold; margin-bottom: 10px; display: block;">' .$errors['0'] . !'</span>';
                                                }
                                            }
                                         ?>
                                         <div class="form__group">
                                             <div class="row">
+
                                                 <div class="col-md-4">
-                                                    <input type="text" name="name" class="form__control" placeholder="Name" value="<?php echo $_POST['name'];?>">
+                                                    <input type="text" name="name" class="form__control" placeholder="Name">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" name="name" class="form__control" placeholder="Nickname" value="<?php echo $_POST['nickname'];?>">
+                                                    <input type="text" name="nickname" class="form__control" placeholder="Nickname">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" name="name" class="form__control" placeholder="Email (will not show)" value="<?php echo $_POST['email'];?>">
+                                                    <input type="text" name="email" class="form__control" placeholder="Email (will not show)">
                                                 </div>
                                             </div>
                                         </div>
@@ -167,7 +166,6 @@ require "includes/config.php"
                                 </div>
                             </div>
                         </section>
-
 
                             <?php include "pages/sidebar.php"?>
 
